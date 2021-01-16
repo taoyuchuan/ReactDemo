@@ -7,6 +7,14 @@ function Greet() {
 */
 
 // ES6 arrow syntax
-const Greet = () => <h1>Hello Yuchuan</h1>
+const Greet = (props) => {
+  console.log(props)
+  return (
+    <div>
+      <h1>Hello { props.name } is {props.heroName}</h1>
+      { props.children }
+    </div>
+  )
+}
 
 export default Greet
