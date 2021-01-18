@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import CheckBox from './CheckBox'
 
 class Form extends Component {
   constructor(props) {
@@ -7,7 +8,13 @@ class Form extends Component {
     this.state = {
       username: '',
       comments: '',
-      topic: 'react'
+      topic: 'react',
+      fruits: [
+        {id: 1, value: "banana", isChecked: false},
+        {id: 2, value: "apple", isChecked: false},
+        {id: 3, value: "mango", isChecked: false},
+        {id: 4, value: "grape", isChecked: false}
+      ]
     }
   }
 
@@ -27,6 +34,21 @@ class Form extends Component {
     this.setState({
       topic: event.target.value
     })
+  }
+
+  handleAllChecked = event => {
+    let fruits = this.state.fruits
+    fruits.forEach(fruit => fruit.isChecked = event.target.checked)
+    this.setState({ fruits: fruits })
+  }
+
+  handleCheckChildElement = event => {
+    let fruits = this.state.fruits
+    fruits.forEach(fruit => {
+         if (fruit.value === event.target.value)
+            fruit.isChecked = event.target.checked
+    })
+    this.setState({ fruits: fruits })
   }
 
   handleSubmit = event => {
@@ -61,6 +83,17 @@ class Form extends Component {
             <option value = 'vue'>Vue</option>
           </select>
         </div>
+        <div>
+          <h1> Check and Uncheck All Example </h1>
+          <input type="checkbox" onClick={ this.handleAllChecked }  value="checkedall" /> Check / Uncheck All
+            <ul>
+              {
+                this.state.fruits.map((fruit) => {
+                  return (<CheckBox handleCheckChildElement={this.handleCheckChildElement}  {...fruit} />)
+                })
+              }
+            </ul>
+         </div>
         <button type = 'submit'>Submit</button>
       </form>
     )
