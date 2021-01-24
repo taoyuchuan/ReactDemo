@@ -29,11 +29,15 @@ import Hero from './components/Hero'
 import ErrorBoundary from './components/ErrorBoundary'
 import ClickCounter from './components/ClickCounter'
 import HoverCounter from './components/HoverCounter'
+import ClickCounterTwo from './components/ClickCounterTwo'
+import HoverCounterTwo from './components/HoverCounterTwo'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
+        <HoverCounterTwo />
+        <ClickCounterTwo />
         <HoverCounter />
         <ClickCounter name = 'Yuchuan' />
         <ErrorBoundary>
