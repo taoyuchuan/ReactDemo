@@ -33,11 +33,16 @@ import ClickCounterTwo from './components/ClickCounterTwo'
 import HoverCounterTwo from './components/HoverCounterTwo'
 import User from './components/User'
 import WithCounterTwo from './components/WithCounterTwo'
+import ComponentC from './components/ComponentC'
+import { UserProvider } from './components/userContext'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
+        <UserProvider value = 'Yuchuan'>
+          <ComponentC />
+        </UserProvider>
         <WithCounterTwo>
           {(count, incrementCount) => (
             <ClickCounterTwo count = { count } incrementCount = { incrementCount } />
