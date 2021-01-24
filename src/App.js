@@ -31,13 +31,24 @@ import ClickCounter from './components/ClickCounter'
 import HoverCounter from './components/HoverCounter'
 import ClickCounterTwo from './components/ClickCounterTwo'
 import HoverCounterTwo from './components/HoverCounterTwo'
+import User from './components/User'
+import WithCounterTwo from './components/WithCounterTwo'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <HoverCounterTwo />
-        <ClickCounterTwo />
+        <WithCounterTwo>
+          {(count, incrementCount) => (
+            <ClickCounterTwo count = { count } incrementCount = { incrementCount } />
+          )}
+        </WithCounterTwo>
+        <WithCounterTwo>
+          {(count, incrementCount) => (
+            <HoverCounterTwo count = { count } incrementCount = { incrementCount } />
+          )}
+        </WithCounterTwo>
+        <User render = { (isLoggedIn) => isLoggedIn ? 'Yuchuan' : 'Guest' }/>
         <HoverCounter />
         <ClickCounter name = 'Yuchuan' />
         <ErrorBoundary>
